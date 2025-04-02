@@ -1,0 +1,55 @@
+Magazine,Java Programming Weekly,2.0
+Supplement,JavaFX Column,0.5,Java Programming Weekly
+Supplement,Java JDK Updates,0.75,Java Programming Weekly
+Supplement,Java UI Discussion,0.25,Java Programming Weekly
+Supplement,Java Complaints Segment,0.00,Java Programming Weekly
+
+Magazine,Empty Magazine,1.5
+Supplement,Not A Supplement,0.5,Empty Magazine
+
+
+CreditCard,Andy,4444444444444444,10,25,444
+PayingCustomer,Credit Card Andy,creditcardandy@ilovecreditcards.com,4444444444444444
+AddMagazine,Java Programming Weekly,creditcardandy@ilovecreditcards.com
+AddSupplement,JavaFX Column,Java Programming Weekly,creditcardandy@ilovecreditcards.com
+AddSupplement,Java JDK Updates,Java Programming Weekly,creditcardandy@ilovecreditcards.com
+AddSupplement,Java UI Discussion,Java Programming Weekly,creditcardandy@ilovecreditcards.com
+
+AssociateCustomer,Andy's Child 1,andychild1@ilovecreditcards.com,creditcardandy@ilovecreditcards.com
+AddMagazine,Java Programming Weekly,andychild1@ilovecreditcards.com
+AddSupplement,JavaFX Column,Java Programming Weekly,andychild1@ilovecreditcards.com
+
+AssociateCustomer,Andy's Child 2,andychild2@ilovecreditcards.com,creditcardandy@ilovecreditcards.com
+AddMagazine,Java Programming Weekly,andychild2@ilovecreditcards.com
+AddSupplement,Java JDK Updates,Java Programming Weekly,andychild2@ilovecreditcards.com
+
+AssociateCustomer,Andy's Child 3,andychild3@ilovecreditcards.com,creditcardandy@ilovecreditcards.com
+AddMagazine,Java Programming Weekly,andychild3@ilovecreditcards.com
+AddSupplement,Java UI Discussion,Java Programming Weekly,andychild3@ilovecreditcards.com
+
+
+
+DirectDebt,Sohel Incorperated,55555555,050050
+PayingCustomer,Sohel Inc.,payments@sohel.org,55555555
+
+AssociateCustomer,Ferdous Sohel,sohel@sohel.org,payments@sohel.org
+AddMagazine,Java Programming Weekly,sohel@sohel.org
+AddSupplement,JavaFX Column,Java Programming Weekly,sohel@sohel.org
+AddSupplement,Java JDK Updates,Java Programming Weekly,sohel@sohel.org
+
+AssociateCustomer,Robert Herne,rherne@sohel.org,payments@sohel.org
+AddMagazine,Java Programming Weekly,rherne@sohel.org
+AddSupplement,Java UI Discussion,Java Programming Weekly,rherne@sohel.org
+AddSupplement,Java Complaints Segment,Java Programming Weekly,rherne@sohel.org
+
+AssociateCustomer,Shri Rai,srai@sohel.org,payments@sohel.org
+
+MonthlyBilling,2,2024
+
+RemoveCustomer,andychild3@ilovecreditcards.com
+
+AssociateCustomer,Andy's Child 4,andychild4@ilovecreditcards.com,creditcardandy@ilovecreditcards.com
+AddMagazine,Java Programming Weekly,andychild4@ilovecreditcards.com
+AddSupplement,Java Complaints Segment,Java Programming Weekly,andychild4@ilovecreditcards.com
+
+MonthlyBilling,3,2024
