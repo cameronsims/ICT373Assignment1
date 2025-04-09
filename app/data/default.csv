@@ -8,7 +8,7 @@ Magazine,Empty Magazine,1.5
 Supplement,Not A Supplement,0.5,Empty Magazine
 
 
-CreditCard,Andy,4444444444444444,10,25,444
+CreditCard,Andy,4444444444444444,10,2025,444
 PayingCustomer,Credit Card Andy,creditcardandy@ilovecreditcards.com,4444444444444444
 AddMagazine,Java Programming Weekly,creditcardandy@ilovecreditcards.com
 AddSupplement,JavaFX Column,Java Programming Weekly,creditcardandy@ilovecreditcards.com

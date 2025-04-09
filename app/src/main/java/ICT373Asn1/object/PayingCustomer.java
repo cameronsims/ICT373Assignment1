@@ -107,13 +107,38 @@ public class PayingCustomer extends Customer {
     
     /**
      * <p>Returns boolean value based on if the payment is valid, implemented by the sub classes.</p>
+     * 
+     * @param p_year The year that we're billing 
+     * @param p_month The month that we're billing
      *
      * @return True if they are getting the magazines... False if they do not have a valid payment...
      */
     @Override
-    protected boolean m_isValidPayment() {
+    protected boolean m_isValidPayment(final int p_year, final int p_month) {
         // Check if we have a payment method.
-        return (this.m_paymentMethod != null);
+        if (this.m_paymentMethod == null) {
+            return false;
+        }
+        
+        // If it is a Credit Card...
+        if (this.m_paymentMethod.getClass().getSimpleName().equals("CreditCard")) {
+            CreditCard c = (CreditCard)this.m_paymentMethod;
+            int month = c.getMonth();
+            int year = c.getYear();
+            
+            // Check if the year is equal
+            if (year != p_year) {
+                // Check if the year is higher, if it is not. 
+                // IT IS NOT VALID.
+                return (year > p_year);
+            }
+            
+            // If the year is equal, check if the month is bigger.
+            // If the month is the same, or lower. It is valid.
+            return (month > p_month);
+        }
+        
+        return true;
     }
     
     /**
@@ -139,13 +164,14 @@ public class PayingCustomer extends Customer {
     /**
      * <p>Bills a paying customer</p>
      *
+     * @param p_year The year that we're billing 
+     * @param p_month The month that we're billing
      * @param p_weeks The weeks we're billing for.
      */
     @Override
-    public void bill(int p_weeks) {
+    public void bill(final int p_year, final int p_month, final int p_weeks) {
         // If we are not billing, get out of here!
-        if (!this.m_isValidPayment()) {
-            System.out.printf("\n\n\n\n\n\n\n\n");
+        if (!this.m_isValidPayment(p_year, p_month)) {
             return;
         }
         

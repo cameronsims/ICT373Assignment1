@@ -31,7 +31,7 @@ public class InputManager extends UserInputManager {
      * @throws InvalidAccountNumberException If the account number is not valid
      * @throws InvalidSecurityNumberException If the security number is not valid
      */
-    private static void m_parseData(String p_token, Map<Long, PaymentMethod> p_paymentMethods, Map<String, Customer> p_customers, Map<String, Magazine> p_magazines) throws InvalidNameException, InvalidEmailException, ManagerException, InvalidCostException, InvalidMonthException, InvalidAccountNumberException, InvalidSecurityNumberException, InvalidBSBException {
+    private static void m_parseData(String p_token, Map<String, PaymentMethod> p_paymentMethods, Map<String, Customer> p_customers, Map<String, Magazine> p_magazines) throws InvalidNameException, InvalidEmailException, ManagerException, InvalidCostException, InvalidMonthException, InvalidAccountNumberException, InvalidSecurityNumberException, InvalidBSBException {
         // Input type we're going to use..
         switch (p_token) {
             // If we want to input a magazine.
@@ -271,7 +271,7 @@ public class InputManager extends UserInputManager {
      * @param p_customers The customers that we have entered into the system
      * @param p_magazines The magazines + supplements that are entered in the system
      */
-    public static void ask(Map<Long, PaymentMethod> p_paymentMethods, Map<String, Customer> p_customers, Map<String, Magazine> p_magazines) {
+    public static void ask(Map<String, PaymentMethod> p_paymentMethods, Map<String, Customer> p_customers, Map<String, Magazine> p_magazines) {
         // Read the file...
         String line = "";
         try {

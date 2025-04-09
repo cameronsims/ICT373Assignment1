@@ -53,11 +53,11 @@ public class UserInputManager {
      */
     protected static void m_createSupplement(final String[] p_tokens, final Map<String, Magazine> p_magazines) throws InvalidNameException, InvalidCostException {
         String magazineName = p_tokens[3];
-                Magazine magazine = p_magazines.get(magazineName);
+        Magazine magazine = p_magazines.get(magazineName);
                 
-                String name = p_tokens[1];
-                float cost = Float.parseFloat(p_tokens[2]);
-                Supplement s = new Supplement(magazine, name, cost);
+        String name = p_tokens[1];
+        float cost = Float.parseFloat(p_tokens[2]);
+        Supplement s = new Supplement(magazine, name, cost);
     }
     
     /**
@@ -70,28 +70,28 @@ public class UserInputManager {
      */
     protected static void m_linkSupplementCustomer(final String[] p_tokens, final Map<String, Customer> p_customers, final Map<String, Magazine> p_magazines) throws ManagerException {
         String supplementName = p_tokens[1];
-                String magazineName = p_tokens[2];
-                String customerEmail = p_tokens[3];
+        String magazineName = p_tokens[2];
+        String customerEmail = p_tokens[3];
                 
-                // Link together...
-                Magazine magazine = p_magazines.get(magazineName);
-                Customer customer = p_customers.get(customerEmail);
-                Supplement supplement = null;
+        // Link together...
+        Magazine magazine = p_magazines.get(magazineName);
+        Customer customer = p_customers.get(customerEmail);
+        Supplement supplement = null;
                 
-                // Find the supplement...
-                for (Supplement s : magazine.getSupplements()) {
-                    if (s.getName().equals(supplementName)) {
-                        supplement = s;
-                        break;
-                    }
-                }
+        // Find the supplement...
+        for (Supplement s : magazine.getSupplements()) {
+            if (s.getName().equals(supplementName)) {
+                supplement = s;
+                break;
+            }
+        }
+             
+        // If it doesn't exist, throw
+        if (supplement == null) {
+            throw new ManagerException("Supplement not found!");
+       }
                 
-                // If it doesn't exist, throw
-                if (supplement == null) {
-                    throw new ManagerException("Supplement not found!");
-                }
-                
-                customer.addSupplement(supplement);
+       customer.addSupplement(supplement);
     }
     
     /**
@@ -104,15 +104,15 @@ public class UserInputManager {
      * @throws InvalidAccountNumberException If the account number is not valid
      * @throws InvalidSecurityNumberException If the security number is not valid
      */
-    protected static void m_createCreditCard(final String[] p_tokens, final Map<Long, PaymentMethod> p_paymentMethods) throws InvalidNameException, InvalidMonthException, InvalidAccountNumberException, InvalidSecurityNumberException {
+    protected static void m_createCreditCard(final String[] p_tokens, final Map<String, PaymentMethod> p_paymentMethods) throws InvalidNameException, InvalidMonthException, InvalidAccountNumberException, InvalidSecurityNumberException {
         // String p_name, long p_number, int p_month, int p_year, int p_security
-                String name = p_tokens[1];
-                long number = Long.parseLong(p_tokens[2]);
-                int month = Integer.parseInt(p_tokens[3]);
-                int year = Integer.parseInt(p_tokens[4]);
-                int security = Integer.parseInt(p_tokens[5]);
-                PaymentMethod pm = new CreditCard(name, number, month, year, security);
-                p_paymentMethods.put(number, pm);
+        String name = p_tokens[1];
+        String number = p_tokens[2];
+        int month = Integer.parseInt(p_tokens[3]);
+        int year = Integer.parseInt(p_tokens[4]);
+        int security = Integer.parseInt(p_tokens[5]);
+        PaymentMethod pm = new CreditCard(name, number, month, year, security);
+        p_paymentMethods.put(pm.getNumber(), pm);
     }
     
     /**
@@ -124,13 +124,13 @@ public class UserInputManager {
      * @throws InvalidAccountNumberException If the account number is not valid
      * @throws InvalidBSBException If the bsb number is not valid
      */
-    protected static void m_createDirectDebit(final String[] p_tokens, final Map<Long, PaymentMethod> p_paymentMethods) throws InvalidNameException, InvalidAccountNumberException, InvalidBSBException {
+    protected static void m_createDirectDebit(final String[] p_tokens, final Map<String, PaymentMethod> p_paymentMethods) throws InvalidNameException, InvalidAccountNumberException, InvalidBSBException {
         // String p_name, long p_number, int p_bsb
-                String name = p_tokens[1];
-                long number = Long.parseLong(p_tokens[2]);
-                int bsb = Integer.parseInt(p_tokens[3]);
-                PaymentMethod pm = new DirectDebit(name, number, bsb);
-                p_paymentMethods.put(number, pm);
+        String name = p_tokens[1];
+        String number = p_tokens[2];
+        int bsb = Integer.parseInt(p_tokens[3]);
+        PaymentMethod pm = new DirectDebit(name, number, bsb);
+        p_paymentMethods.put(pm.getNumber(), pm);
     }
     
     /**
@@ -142,12 +142,12 @@ public class UserInputManager {
      * @throws InvalidNameException Thrown when name is invalid.
      * @throws InvalidEmailException Thrown when not a valid email
      */
-    protected static void m_createPayingCustomer(final String[] p_tokens, final Map<Long, PaymentMethod> p_paymentMethods, final Map<String, Customer> p_customers) throws InvalidNameException, InvalidEmailException {
+    protected static void m_createPayingCustomer(final String[] p_tokens, final Map<String, PaymentMethod> p_paymentMethods, final Map<String, Customer> p_customers) throws InvalidNameException, InvalidEmailException {
         String name = p_tokens[1];
         String email = p_tokens[2];
-        long number = Long.parseLong(p_tokens[3]);
+        String number = PaymentMethod.s_getNumber(p_tokens[3]);
                 
-        PaymentMethod method = p_paymentMethods.get(number);
+        PaymentMethod method = p_paymentMethods.get( number );
                 
         Customer c = new PayingCustomer(name, email, method);
         p_customers.put(email, c);
@@ -163,13 +163,13 @@ public class UserInputManager {
      */
     protected static void m_createAssociateCustomer(final String[] p_tokens, final Map<String, Customer> p_customers) throws InvalidNameException, InvalidEmailException {
         String name = p_tokens[1];
-                String email = p_tokens[2];
-                String payerEmail = p_tokens[3];
+        String email = p_tokens[2];
+        String payerEmail = p_tokens[3];
                 
-                // This is a dummy customer who is used for their email, we will assume they are a paying customer...
-                PayingCustomer payer = (PayingCustomer)p_customers.get(payerEmail);
-                Customer c = new AssociateCustomer(name, email, payer);
-                p_customers.put(email, c);
+        // This is a dummy customer who is used for their email, we will assume they are a paying customer...
+        PayingCustomer payer = (PayingCustomer)p_customers.get(payerEmail);
+        Customer c = new AssociateCustomer(name, email, payer);
+        p_customers.put(email, c);
     }
     
     /**

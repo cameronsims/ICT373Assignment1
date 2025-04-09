@@ -1,0 +1,40 @@
+CreditCard,
+CreditCard,,
+CreditCard,,,
+CreditCard,,,,
+CreditCard,,,,,
+CreditCard,Invalid,,,,
+CreditCard,,12345 12345 12345 12345,,,
+CreditCard,,This-isa.-anum-ber!,,,
+CreditCard,,,-1,,
+CreditCard,,,13,,
+CreditCard,,,,2025,
+CreditCard,,,,,-1
+CreditCard,,,,,1000
+
+DirectDebt,
+DirectDebt,,
+DirectDebt,,,
+DirectDebt,Valid,,
+DirectDebt,,This-aBSB,
+DirectDebt,,ThisisBSB,
+DirectDebt,,1111-1111,
+DirectDebt,,1111 1111,
+DirectDebt,,11111111,
+DirectDebt,,,-1
+DirectDebt,,,1000000
+
+CreditCard,Valid,1234-1234-1234-1234,5,2025,567
+DirectDebt,Valid,1234-1234,123456
+
+PayingCustomer,Valid,valid1@gmail.com,1234 1234 1234 1234
+PayingCustomer,Valid,valid2@gmail.com,12341234
+
+Magazine,M1,1.0
+Supplement,S1,0.5,M1
+
+AddSupplement,S1,M1,valid1@gmail.com
+AddSupplement,S1,M1,valid2@gmail.com
+
+MonthlyBilling,4,2024
+MonthlyBilling,5,2024

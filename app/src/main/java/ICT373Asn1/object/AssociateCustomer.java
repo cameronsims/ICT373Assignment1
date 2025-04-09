@@ -48,11 +48,14 @@ public class AssociateCustomer extends Customer {
     
     /**
      * <p>Returns boolean value based on if the payment is valid, implemented by the sub classes.</p>
+     * 
+     * @param p_year The year that we're billing 
+     * @param p_month The month that we're billing
      *
      * @return True if they are getting the magazines... False if they do not have a valid payment...
      */
     @Override
-    protected boolean m_isValidPayment() {
+    protected boolean m_isValidPayment(final int p_year, final int p_month) {
         // If we do not have a payer, return false.
         if (!this.m_isValid()) {
             return false;
@@ -60,7 +63,7 @@ public class AssociateCustomer extends Customer {
         
         // If the payer doesn't have a valid payment return false
         // If all passes succeeded, return true.
-        return this.m_payer.m_isValidPayment();
+        return this.m_payer.m_isValidPayment(p_year, p_month);
     }
     
     /**

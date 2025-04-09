@@ -62,12 +62,14 @@ public abstract class Customer implements Comparable<Customer> {
      */
     public void setEmail(final String p_email) throws InvalidEmailException {
         // Make sure the email fits.
-        if (p_email.length() == 0) {
+        if (p_email == null || p_email.length() == 0) {
             throw new InvalidEmailException();
         }
         
         // We want to use regex to match it.
-        Pattern pattern = Pattern.compile("^[A-z]+@[A-z]+\\.[A-z]+$");
+        // We want to match \w \. \- for these!
+        String regex = "^(\\w|\\-|\\.)+@([\\w\\-]+\\.)+[\\w\\-]+$";
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(p_email);
         if (!matcher.find()) {
             throw new InvalidEmailException();
@@ -157,17 +159,23 @@ public abstract class Customer implements Comparable<Customer> {
     
     /**
      * <p>Returns boolean value based on if the payment is valid, implemented by the sub classes.</p>
+     * 
+     * @param p_year The year that we're billing 
+     * @param p_month The month that we're billing
      *
      * @return True if they are getting the magazines... False if they do not have a valid payment...
      */
-    abstract boolean m_isValidPayment();
+    abstract protected boolean m_isValidPayment(final int p_year, final int p_month);
     
     /**
      * <p>Gives notification to a customer about new issues.</p>
+     * 
+     * @param p_year The year that we're billing 
+     * @param p_month The month that we're billing
      */
-    public void notif() {
+    public void notif(final int p_year, final int p_month) {
         // If they are not valid, do not notify them...
-        if (!this.m_isValidPayment() || this.m_magazines.isEmpty()) {
+        if (this.m_magazines.isEmpty() || !this.m_isValidPayment(p_year, p_month)) {
             return;
         }
         
@@ -197,9 +205,11 @@ public abstract class Customer implements Comparable<Customer> {
     /**
      *
      * <p>Bills a paying customer</p>
+     * @param p_year The year that we're billing 
+     * @param p_month The month that we're billing
      * @param p_weeks The month we're billing for.
      */
-    public void bill(final int p_weeks) {
+    public void bill(final int p_year, final int p_month, final int p_weeks) {
         // Don't do anything, we are not paying for anything...
         // This is for the payingcustomer, and only the paying customer to do.
     }

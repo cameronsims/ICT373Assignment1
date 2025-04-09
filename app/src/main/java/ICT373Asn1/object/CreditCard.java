@@ -3,6 +3,9 @@ package ICT373Asn1.object;
 import ICT373Asn1.exceptions.*;
 import ICT373Asn1.manager.MonthManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * <p>A CreditCard used to pay things with</p>
  *
@@ -23,11 +26,32 @@ public class CreditCard extends PaymentMethod {
 	 * @throws InvalidMonthException Throws if month is not valid.
      * @throws InvalidSecurityNumberException Throws if security is not valid.
      */
-    public CreditCard(final String p_name,final  long p_number, final int p_month, final int p_year, final int p_security) throws InvalidNameException, InvalidAccountNumberException, InvalidMonthException, InvalidSecurityNumberException { 
+    public CreditCard(final String p_name,final String p_number, final int p_month, final int p_year, final int p_security) throws InvalidNameException, InvalidAccountNumberException, InvalidMonthException, InvalidSecurityNumberException { 
         super(p_name, p_number);
         
         this.setExpiry(p_month, p_year);
         this.setSecurity(p_security);
+    }
+    
+    /**
+     * <p>Sets the number of the account</p>
+     *
+     * @param p_number The number of the payment method
+	 * @throws InvalidAccountNumberException Throws if account number is not valid.
+     */
+    public void setNumber(final String p_number) throws InvalidAccountNumberException {
+        // Throw if not valid.
+        if (p_number == null || p_number.length() == 0 || p_number.charAt(0) == '\0') {
+            throw new InvalidAccountNumberException(); 
+        }
+        
+        // Match for numbers.
+        if (!s_validNumber(p_number, 4)) {
+            throw new InvalidAccountNumberException();
+        }
+        
+        // To make sure it fits, ensure its all just the numbers being input.
+        this.m_number = s_getNumber(p_number);
     }
     
     /**

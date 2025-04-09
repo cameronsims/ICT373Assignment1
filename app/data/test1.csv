@@ -6,8 +6,8 @@ Supplement,Supplement 2,1.0,Magazine 1
 Supplement,Supplement 3,1.5,Magazine 1
 Supplement,Supplement 2,1.0,Magazine 2
 Supplement,Supplement 3,1.5,Magazine 3
-CreditCard,Cameron,1,5,27,111
-DirectDebt,DebtUser,2,111
+CreditCard,Cameron,1111111111111111,5,27,111
+DirectDebt,DebtUser,22222222,111
 
 PayingCustomer,Cameron Sims,cameronissacsims@gmail.com,1
 AddMagazine,Magazine 1,cameronissacsims@gmail.com

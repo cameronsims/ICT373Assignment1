@@ -1,0 +1,11 @@
+Magazine,M1,1.0
+
+Supplemnet,,,
+Supplement,Invalid,,
+Supplement,,-1.0,
+Supplement,Invalid,-1.0,
+Supplement,,-1.0,M1
+Supplement,Invalid,,M1
+Supplement,Invalid,-1.0,M1 
+
+Supplementm,Valid,1.0,M1

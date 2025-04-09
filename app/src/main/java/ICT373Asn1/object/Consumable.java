@@ -33,7 +33,7 @@ abstract class Consumable {
      * @throws InvalidNameException Thrown if the name is not valid.
      **/
     public void setName(final String p_name) throws InvalidNameException {
-        if (p_name.length() == 0) {
+        if (p_name == null || p_name.length() == 0 || p_name.charAt(0) == '\0') {
             throw new InvalidNameException();
         }
         this.m_name = p_name;

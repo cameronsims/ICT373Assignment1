@@ -165,9 +165,28 @@ public class FileManager extends UserInputManager {
                 String[] tokens = line.split(",");
                 m_parseData(tokens, p_manager);
             } catch (Exception e) {
-                System.out.printf("Error: Direguarding row #%d. \"%s\"\nReason:\n", i, line, e.toString());
+                System.out.printf("Error: Direguarding row #%d. \"%s\"\nReason: %s\n", i, line, e.toString());
             }
         } 
         
+    }
+
+    /**
+     * <p>Runs a file, this being a manifest file, and executes openFile commands on all.</p>
+     *
+     * @param p_fname The manifest file name we're parsing...
+     * @param p_manager The manager singleton we're parsing.
+     * @throws FileNotFoundException Thrown if we haven't found a manifest file. 
+     */
+    public static void openManifest(final String p_fname, final MagazineManager p_manager) throws FileNotFoundException {
+        // Check if our manifest is a file 
+        File manifest = new File("./data/manifest.txt");
+        Scanner input = new Scanner(manifest);
+        
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+            System.out.printf("%s %s\n", System.getProperty("user.dir"), "/data/" + line);
+            openFile("./data/" + line, p_manager);
+        }
     }
 }

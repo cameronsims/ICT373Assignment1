@@ -27,12 +27,12 @@ public class MagazineTest {
         }
         
         // All of these should fail.
-        String[] names = new String[]{ "", null, "\0" };
-        for (int i = 0; i < names.length; i++) {
+        String[] invalid = new String[]{ "", null, "\0" };
+        for (int i = 0; i < invalid.length; i++) {
             try {
                 // Attempt, this should fail.
                 // If it doesn't, return false.
-                new Magazine(names[i], 0.00f);
+                new Magazine(invalid[i], 0.00f);
                 return false;
             } catch (Exception e) {
             
